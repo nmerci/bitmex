@@ -1,4 +1,5 @@
 bitmex
+bitmex-ws
 pandas
 tqdm
 ipython

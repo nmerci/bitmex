@@ -11,6 +11,7 @@ setup(name="bitmex",
       url="https://github.com/nmerci/bitmex",
       install_requires=[
           "bitmex",
+          "bitmex-ws",
           "pandas",
           "tqdm"]
       )
