@@ -1,0 +1,4 @@
+bitmex
+pandas
+tqdm
+ipython
