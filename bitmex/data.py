@@ -6,6 +6,7 @@ from urllib.request import urlretrieve
 from datetime import datetime, timedelta
 import os
 import logging
+import argparse
 
 from typing import List
 
@@ -64,3 +65,24 @@ def aggregate_data(data_dir: str, output_dir: str, symbols: List[str] = None, fr
     logging.info("Concatenating data...")
     for symbol in tqdm(result):
         pd.concat(result[symbol]).to_csv(os.path.join(output_dir, f"{symbol}.csv.gz"), index=False)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    subparsers = parser.add_subparsers(dest="subparser_name")
+
+    dl_parser = subparsers.add_parser("download")
+    dl_parser.add_argument("-o", "--output", type=str)
+
+    agg_parser = subparsers.add_parser("aggregate")
+    agg_parser.add_argument("-i", "--input", type=str)
+    agg_parser.add_argument("-o", "--output", type=str)
+
+    args = parser.parse_args()
+
+    if args.subparser_name == "download":
+        download_data(args.output)
+    elif args.subparser_name == "aggregate":
+        aggregate_data(args.input, args.output)
+    else:
+        raise ValueError(f"Unknown option {args.subparser_name}")
