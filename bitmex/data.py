@@ -50,7 +50,7 @@ def aggregate_data(data_dir: str, output_dir: str, symbols: List[str] = None, fr
             df = pd.read_csv(os.path.join(root, f), usecols=["timestamp", "symbol", "side", "size", "price"])
             df["timestamp"] = pd.to_datetime(df["timestamp"], format="%Y-%m-%dD%H:%M:%S.%f")
 
-            if datetime is not None:
+            if from_date is not None:
                 df = df[df["timestamp"] > from_date]
 
             for symbol, group in df.groupby("symbol"):
@@ -77,12 +77,13 @@ if __name__ == '__main__':
     agg_parser = subparsers.add_parser("aggregate")
     agg_parser.add_argument("-i", "--input", type=str)
     agg_parser.add_argument("-o", "--output", type=str)
+    agg_parser.add_argument("-s", "--symbols", type=str, nargs="+", default=None)
 
     args = parser.parse_args()
 
     if args.subparser_name == "download":
         download_data(args.output)
     elif args.subparser_name == "aggregate":
-        aggregate_data(args.input, args.output)
+        aggregate_data(args.input, args.output, args.symbols)
     else:
         raise ValueError(f"Unknown option {args.subparser_name}")
