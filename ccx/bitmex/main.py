@@ -1,4 +1,4 @@
-from bitmex.api_keys import API_KEY, API_SECRET
+from api_keys import API_KEY, API_SECRET
 
 from bitmex_websocket import BitMEXWebsocket
 import logging
@@ -17,13 +17,15 @@ def run():
 
     # Run forever
     while ws.ws.sock.connected:
-        logger.info("Ticker: %s" % ws.get_ticker())
-        if ws.api_key:
-            logger.info("Funds: %s" % ws.funds())
-        logger.info("Market Depth: %s" % ws.market_depth())
-        logger.info("Recent Trades: %s\n\n" % ws.recent_trades())
+        # logger.info("Ticker: %s" % ws.get_ticker())
+        # if ws.api_key:
+        #     logger.info("Funds: %s" % ws.funds())
+        # logger.info("Market Depth: %s" % ws.market_depth())
+        recent_trades = ws.recent_trades()
+        print(f"Recent Trades: {recent_trades}")
+        print(len(recent_trades))
 
-        sleep(10)
+        sleep(1)
 
 
 def setup_logger():

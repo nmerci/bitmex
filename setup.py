@@ -3,12 +3,12 @@
 from setuptools import setup
 
 
-setup(name="bitmex",
+setup(name="cryptocurrency-exchange",
       version="0.0.1",
-      description="BitMEX API client.",
+      description="Cryptocurrency exchange connector",
       author="Vlad Khizanov",
       author_email="vl.khizanov@gmail.com",
-      url="https://github.com/nmerci/bitmex",
+      url="https://github.com/nmerci/cryptocurrency-exchange",
       install_requires=[
           "bitmex",
           "bitmex-ws",
