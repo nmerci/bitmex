@@ -108,3 +108,8 @@ venv.bak/
 
 # API keys
 api_keys.py
+
+# Data
+data/
+*.csv
+*.csv.gz

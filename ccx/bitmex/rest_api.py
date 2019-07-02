@@ -10,7 +10,10 @@ import logging
 # get from local
 # get from aws
 # get from rest api
-# get from ws api
+# get from ws api << run in thread
+#  ^^ do in constructor
+# implement get method
+
 
 
 def get_data(start_time: datetime = datetime(2019, 6, 27), symbol: str = "XBTUSD", delay: float = 0.2):
